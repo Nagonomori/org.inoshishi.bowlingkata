@@ -73,9 +73,9 @@ public class BowlingGame {
     }
 
     private void incrementScore() {
-        if (isStrike(firstInFrame))
+        if (isStrike())
             addStrikePoints();
-        else if (isSpare(firstInFrame))
+        else if (isSpare())
             addSparePoints();
         else
             addPoints();
@@ -83,38 +83,38 @@ public class BowlingGame {
     }
 
     private void addPoints() {
-        score += twoBallsInFrame(firstInFrame);
+        score += twoBallsInFrame();
         firstInFrame += 2;
     }
 
     private void addSparePoints() {
-        score += 10 + nextBallForSpare(firstInFrame);
+        score += 10 + nextBallForSpare();
         firstInFrame += 2;
     }
 
     private void addStrikePoints() {
-        score += 10 + nextTwoBallsForStrike(firstInFrame);
+        score += 10 + nextTwoBallsForStrike();
         firstInFrame++;
     }
 
-    private int nextTwoBallsForStrike(int firstInFrame) {
+    private int nextTwoBallsForStrike() {
         return rolls[firstInFrame + 1] + rolls[firstInFrame + 2];
     }
 
 
-    private boolean isStrike(int firstInFrame) {
+    private boolean isStrike() {
         return rolls[firstInFrame] == 10;
     }
 
-    private int twoBallsInFrame(int firstInFrame) {
+    private int twoBallsInFrame() {
         return rolls[firstInFrame] + rolls[firstInFrame + 1];
     }
 
-    private int nextBallForSpare(int firstInFrame) {
+    private int nextBallForSpare() {
         return rolls[firstInFrame + 2];
     }
 
-    private boolean isSpare(int roll) {
-        return twoBallsInFrame(roll) == 10;
+    private boolean isSpare() {
+        return twoBallsInFrame() == 10;
     }
 }
